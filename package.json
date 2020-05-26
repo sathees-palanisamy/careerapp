@@ -1,0 +1,34 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "engines": {
+    "node": "12.16.2"
+  },
+  "description": "react web server",
+  "homepage": "https://shareyourcareerpath.com/",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js ",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "fix-code": "prettier-eslint --write 'src/**/*.{js,jsx}' ",
+    "fix-styles": "prettier-stylelint --write 'src/**/*.{css,scss}' "
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "google-protobuf": "^3.12.1",
+    "grpc": "^1.24.2",
+    "knex": "^0.21.1",
+    "nodemon": "^2.0.4",
+    "pg": "^8.2.1"
+  }
+}
