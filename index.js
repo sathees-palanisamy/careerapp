@@ -13,7 +13,8 @@ app.use(function(req, res, next) {
 
 app.use(bodyParser.json());
 
-require('./routes/suggestion')(app);
+//require('./routes/suggestion')(app);
+require('./routes/feedback')(app);
 
 if (process.env.NODE_ENV === 'production') {
   // Express will serve up production assets

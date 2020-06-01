@@ -23,7 +23,7 @@ const Backdrop = (props) => (
                     <a href="/sharepath" onClick={props.backDropToggle} ><b>Share Your Career Path</b></a>
                 </li>
                 <li>
-                    <i className="ion-ios-trophy icon-small"></i>
+                    <i className="ion-ios-help-outline icon-small"></i>
                     <a href="/suggestion" onClick={props.backDropToggle} ><b>Suggestion Please</b></a>
                 </li>
             </ul>

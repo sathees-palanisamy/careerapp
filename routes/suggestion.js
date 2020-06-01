@@ -16,12 +16,17 @@ module.exports = app => {
 
 
   let unsafCreds = grpc.credentials.createInsecure();
+
+ 
+  var client = new suggestService.SuggestServiceClient("dns:///172.217.168.244:8081", unsafCreds);
+
+ //var client = new suggestService.SuggestServiceClient("0.0.0.0:8080", unsafCreds);
+
   
     app.get('/api/suggestion/list', (req, res) => {
       console.log("In Suggestion List")
 
-      var client = new suggestService.SuggestServiceClient("https://suggestiongoservice.ew.r.appspot.com/", credentials);
-
+   
       var emptySuggestRequest = new suggests.ListSuggestRequest();
 
       var call = client.listSuggest(emptySuggestRequest, () => {});
@@ -61,9 +66,7 @@ module.exports = app => {
 
       console.log('formData:',formData);
 
-      var client = new suggestService.SuggestServiceClient("https://suggestiongoservice.ew.r.appspot.com/", credentials);
-
-      var suggestData = new suggests.Suggest();
+        var suggestData = new suggests.Suggest();
 
       suggestData.setEmail(formData.email)
       suggestData.setDetail(formData.detail)
@@ -90,8 +93,6 @@ module.exports = app => {
 
     app.post('/api/suggestion/delete', (req, res) => {
       console.log("In Suggestion Delete")
-
-      var client = new suggestService.SuggestServiceClient("https://suggestiongoservice.ew.r.appspot.com/", credentials);
 
       var deleteSuggestRequest = new suggests.DeleteSuggestRequest();
 

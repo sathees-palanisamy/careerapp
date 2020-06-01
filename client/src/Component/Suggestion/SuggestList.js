@@ -31,11 +31,12 @@ class SuggestList extends Component {
 
         const data = {
             id: id,
+            email: "",
+            detail: "",
+            date: "",
         };
 
- 
-
-        axios.post('/api/suggestion/delete', data)
+        axios.post('/api/feedback/delete', data)
             .then(response => {
                 this.displayList();
             })
@@ -54,7 +55,7 @@ class SuggestList extends Component {
     displayList(event) {
         this.setState({ uiStatus: 'list' });
 
-        axios.get('/api/suggestion/list')
+        axios.get('/api/feedback/list')
         .then(response => {
             this.setState({ dataList: [...response.data] });
         })
@@ -72,6 +73,7 @@ class SuggestList extends Component {
         let formatted_date = current_datetime.getDate() + "-" + months[current_datetime.getMonth()] + "-" + current_datetime.getFullYear() + "." + current_datetime.getTime();
 
         const data = {
+            id : "",
             email: this.state.email,
             detail: this.state.customerDescription,
             date: formatted_date,
@@ -80,16 +82,20 @@ class SuggestList extends Component {
 
         var self = this;
 
-        axios.post('/api/suggestion/create', data)
+        axios.post('/api/feedback/create', data)
             .then(response => {
        
+                console.log('response.status:',response.status);
                 if (response.status === 200) {
                     self.setState({ uploadStatus: 'Thank you for helping us.' });
+                } else {
+                    self.setState({ uploadStatus: 'Server Error' });
                 }
 
             })
             .catch((error) => {
                 console.log(error)
+                self.setState({ uploadStatus: 'Server Error' });
             });
 
         this.setState({ email: '', customerDescription: '' });
@@ -195,7 +201,7 @@ class SuggestList extends Component {
                                         <li className="customerInter" onClick={(e) => this.DeleteClick(indiSuggestion.id, e)}
                                         ><i className="ion-ios-crop icon-small"></i>Delete</li>
                                     </ul>
-                                    <p className="plan-price-meal">{indiSuggestion.details}</p>
+                                    <p className="plan-price-meal">{indiSuggestion.detail}</p>
                                 </div>
                                 <div className="historyDet">
                                     <ul className="iconDisplay">
