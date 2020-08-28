@@ -213,6 +213,7 @@ class Department extends Component {
       let joinCatSubCat = this.state.category.concat(subCatedata);
 
       const db = firebase.firestore();
+      db.settings({experimentalForceLongPolling: true});
 
       let first = db.collection('career')
           .where('retrieveKey', '==', joinCatSubCat)
@@ -278,6 +279,7 @@ class Department extends Component {
  
    secondPageExtract = () => {
          const db = firebase.firestore();
+         db.settings({experimentalForceLongPolling: true});
  
          if (this.state.firstPageCareerDet.length > 2) {
  
@@ -414,6 +416,7 @@ class Department extends Component {
       }
 
       const db = firebase.firestore();  
+      db.settings({experimentalForceLongPolling: true});
 
       const incrementVal = firebase.firestore.FieldValue.increment(1);
      
@@ -438,6 +441,7 @@ class Department extends Component {
       }
 
       const db = firebase.firestore();  
+      db.settings({experimentalForceLongPolling: true});
 
       const incrementVal = firebase.firestore.FieldValue.increment(1);
      

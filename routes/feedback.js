@@ -19,10 +19,11 @@ module.exports = app => {
   app.get('/api/feedback/list', (req, res) => {
     console.log("In Suggestion List")
 
-    var dataList = [];
-    let data = {};
-
-    axios.post('https://feedbackservice.ew.r.appspot.com/ext', data, basicAuth)
+    axios.get('https://user-feedback-subdomain.ew.r.appspot.com/v1/feedback/listFeedback', {
+  headers: {
+    'Authorization': `token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhdGhlZXMyNUBnbWFpbC5jb20iLCJpc3MiOiJmZWVkYmFjayIsInRpbWUiOiIyMDIwLTA4LTI3VDIxOjIyOjAzLjIxNzYwMSswMTowMCJ9.yzy6LaJVR_F1Zzp9nxCC29KEHWR0-EjcE9L2B4q7ooA`
+  }
+})
       .then(response => {
         console.log(response.data)
         res.send(response.data);
@@ -51,7 +52,11 @@ module.exports = app => {
 
     formData.detail = crypt
 
-    axios.post('https://feedbackservice.ew.r.appspot.com/ins', formData, basicAuth)
+    axios.post('https://user-feedback-subdomain.ew.r.appspot.com/v1/feedback/createFeedback', formData,  {
+  headers: {
+    'Authorization': `token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhdGhlZXMyNUBnbWFpbC5jb20iLCJpc3MiOiJmZWVkYmFjayIsInRpbWUiOiIyMDIwLTA4LTI3VDIxOjIyOjAzLjIxNzYwMSswMTowMCJ9.yzy6LaJVR_F1Zzp9nxCC29KEHWR0-EjcE9L2B4q7ooA`
+  }
+})
       .then(response => {
         console.log(response.data)
         res.send(response.toString());
@@ -70,7 +75,11 @@ module.exports = app => {
 
     console.log('formData:', formData);
 
-    axios.post('https://feedbackservice.ew.r.appspot.com/del', formData, basicAuth)
+    axios.post('https://user-feedback-subdomain.ew.r.appspot.com/v1/feedback/deleteFeedback', formData,  {
+  headers: {
+    'Authorization': `token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhdGhlZXMyNUBnbWFpbC5jb20iLCJpc3MiOiJmZWVkYmFjayIsInRpbWUiOiIyMDIwLTA4LTI3VDIxOjIyOjAzLjIxNzYwMSswMTowMCJ9.yzy6LaJVR_F1Zzp9nxCC29KEHWR0-EjcE9L2B4q7ooA`
+  }
+})
       .then(response => {
         console.log(response.data)
         res.send(response.toString());
